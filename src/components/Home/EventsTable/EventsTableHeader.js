@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select, Checkbox, Row, Col, Radio, Divider } from 'antd'
+import { Select, Checkbox, Row, Col, Radio, Divider, Form } from 'antd'
 import { searchFilters, defaultSearchFilters } from './eventsConstants'
 import states from '../../../data/states'
 
@@ -37,7 +37,7 @@ const EventsTableHeader = (props) => {
   }
 
   return (
-    <div>
+    <div className="events-table-header-container">
       <h2 className="text-primary table-title text-center">
         Upcoming Events
       </h2>
@@ -68,25 +68,52 @@ const EventsTableHeader = (props) => {
           </Radio.Group>
         </Col>
       </Row>
-      <Select
-        className="header-item"
-        mode="multiple"
-        style={{ width: '100%' }}
-        placeholder="Select State(s)"
-        onChange={state => props.updateSearchFilters(state, 'stateName')}
+      <Form.Item
+        className="table-header-label"
+        label="State(s)"
+        labelCol={{
+        xs: { span: 24 },
+        sm: { span: 5 },
+        }}
+        wrapperCol={{
+          xs: { span: 24 },
+          sm: { span: 19 },
+        }}
       >
-        {stateOptions()}
-      </Select>
-      <Select
-        className="header-item"
-        mode="multiple"
-        style={{ width: '100%' }}
-        placeholder="Select Event Type(s)"
-        defaultValue={defaultSearchFilters.meetingType}
-        onChange={event => props.updateSearchFilters(event, 'meetingType')}
+  
+        <Select
+          className="header-item"
+          mode="multiple"
+          style={{ width: '100%' }}
+          placeholder="Select State(s)"
+          onChange={state => props.updateSearchFilters(state, 'stateName')}
+        >
+          {stateOptions()}
+        </Select>
+       </Form.Item>
+      <Form.Item
+        className="table-header-label"
+        label="Event type(s)"
+        labelCol={{
+          xs: { span: 24 },
+          sm: { span: 5 },
+          }}
+        wrapperCol={{
+          xs: { span: 24 },
+          sm: { span: 19 },
+        }}
       >
-        {eventOptions()}
-      </Select>
+        <Select
+          className="header-item"
+          mode="multiple"
+          style={{ width: '100%' }}
+          placeholder="Select Event Type(s)"
+          defaultValue={defaultSearchFilters.meetingType}
+          onChange={event => props.updateSearchFilters(event, 'meetingType')}
+        >
+          {eventOptions()}
+        </Select>
+      </Form.Item>
     </div>
   )
 }

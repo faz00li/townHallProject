@@ -87,7 +87,7 @@ class EventsTable extends React.Component {
     const currentFilteredEvents = getFilteredEvents(allTownHalls, filters, sortOn)
 
     return (
-    <div className="hidden-xs ">
+    <div>
       <section className="scroll-to-form text-center">
         <p>
           <a
